@@ -207,9 +207,19 @@ public class Principal extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton5.setText("Eliminar Compilador");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setText("Ver Nota");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -599,15 +609,17 @@ public class Principal extends javax.swing.JFrame {
                 as.cargarArchivo();
                 for (int i = 0; i < as.getLista().size(); i++) {
                     if (as.getLista().get(i).getUsuario().equals(user.getText()) && Arrays.toString(pss.getPassword()).equals(as.getLista().get(i).getContra())) {
-                        //abrir jdialog
-
+                        usuario.setModal(true);
+                        usuario.pack();
+                        usuario.setLocationRelativeTo(this);
+                        usuario.setVisible(true);
                         JOptionPane.showMessageDialog(this, "Bienvenido " + as.getLista().get(i).getNombre());
                         creador = as.getLista().get(i).getNombre();
                         i = as.getLista().size();
                         user.setText("");
                         pss.setText("");
                     } else {
-                        if (i == as.getLista().size() - 1) {
+                        if (i == as.getLista().size()) {
                             JOptionPane.showMessageDialog(this, "Usuario y/o contaseña inválidos."
                                     + "\n Intente de nuevo o cree un usuario");
                             user.setText("");
@@ -664,31 +676,31 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        if (!nc.getText().isEmpty() && !c1.getText().isEmpty() && !c2.getText().isEmpty() 
-                &&!c3.getText().isEmpty() &&!c4.getText().isEmpty() &&!c5.getText().isEmpty() &&!c6.getText().isEmpty()) {
+        if (!nc.getText().isEmpty() && !c1.getText().isEmpty() && !c2.getText().isEmpty()
+                && !c3.getText().isEmpty() && !c4.getText().isEmpty() && !c5.getText().isEmpty() && !c6.getText().isEmpty()) {
             String nombre = nc.getText();
             JTable error = new JTable();
             error.setModel(new javax.swing.table.DefaultTableModel(
-                        new Object[][]{},
-                        new String[]{
-                            "Codigo", "Descripción"
-                        }
-                ) {
-                    Class[] types = new Class[]{
-                        java.lang.Integer.class, java.lang.String.class
-                    };
-                    boolean[] canEdit = new boolean[]{
-                        false, false
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
+                    new Object[][]{},
+                    new String[]{
+                        "Codigo", "Descripción"
                     }
+            ) {
+                Class[] types = new Class[]{
+                    java.lang.Integer.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    false, false
+                };
 
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit[columnIndex];
-                    }
-                });
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
             Compilador c = new Compilador(nombre, creador, error, t1);
             c.getEtapas().add(new Etapa(Integer.parseInt(c1.getText()), e1.getText()));
             c.getEtapas().add(new Etapa(Integer.parseInt(c2.getText()), e2.getText()));
@@ -709,27 +721,27 @@ public class Principal extends javax.swing.JFrame {
             c5.setText("");
             c6.setText("");
             t1.setModel(new javax.swing.table.DefaultTableModel(
-                        new Object[][]{},
-                        new String[]{
-                            "Variable", "Tipo"
-                        }
-                ) {
-                    Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class
-                    };
-                    boolean[] canEdit = new boolean[]{
-                        true, true
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
+                    new Object[][]{},
+                    new String[]{
+                        "Variable", "Tipo"
                     }
+            ) {
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    true, true
+                };
 
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit[columnIndex];
-                    }
-                });
-        }else{
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+        } else {
             JOptionPane.showMessageDialog(this, "Campos incompletos\n"
                     + "Compilador no fue agregado");
             nc.setText("");
@@ -740,28 +752,58 @@ public class Principal extends javax.swing.JFrame {
             c5.setText("");
             c6.setText("");
             t1.setModel(new javax.swing.table.DefaultTableModel(
-                        new Object[][]{},
-                        new String[]{
-                            "Variable", "Tipo"
-                        }
-                ) {
-                    Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class
-                    };
-                    boolean[] canEdit = new boolean[]{
-                        true, true
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
+                    new Object[][]{},
+                    new String[]{
+                        "Variable", "Tipo"
                     }
+            ) {
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    true, true
+                };
 
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit[columnIndex];
-                    }
-                });
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
         }
     }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        adminComp ac = new adminComp("./Compiladores.rjz");
+        ac.cargarArchivo();
+        for (int i = 0; i < ac.getLista().size(); i++) {
+            if (ac.getLista().get(i).getCreador().equals(creador)) {
+                ac.getLista().remove(i);
+                i = ac.getLista().size();
+                JOptionPane.showMessageDialog(this, "Compilador eliminado correctamente");
+            } else {
+                if (i == ac.getLista().size()) {
+                    JOptionPane.showMessageDialog(this, "Aún no se ha creado ningún compilador con esta cuenta");
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        adminUsuarios as = new adminUsuarios("./Usuarios.rjz");
+        as.cargarArchivo();
+        for (int i = 0; i < as.getLista().size(); i++) {
+            if (as.getLista().get(i).getNombre().equals(creador)) {
+                if (as.getLista().get(i).getNota() != 0) {
+                    JOptionPane.showMessageDialog(this, "La nota obtenda es de: " + as.getLista().get(i).getNota());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aún no se ha calificado ningún compilador creado con esta cuenta");
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
