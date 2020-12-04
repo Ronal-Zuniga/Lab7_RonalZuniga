@@ -1,15 +1,17 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
+public class Compilador implements Serializable {
 
-public class Compilador {
     private String nombre;
     private String creador;
     private int codigo;
     private ArrayList<Etapa> etapas = new ArrayList();
     private JTable simbolos;
     private JTable errores;
+    private static final long SerialVersionUID = 555L;
 
     public Compilador() {
     }
@@ -80,6 +82,5 @@ public class Compilador {
     public String toString() {
         return "Compilador{" + "nombre=" + nombre + ", creador=" + creador + ", codigo=" + codigo + ", etapas=" + etapas + ", simbolos=" + simbolos + ", errores=" + errores + '}';
     }
-    
-    
+
 }

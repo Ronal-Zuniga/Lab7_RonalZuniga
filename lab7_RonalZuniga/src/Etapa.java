@@ -8,10 +8,10 @@ public class Etapa {
     public Etapa() {
     }
 
-    public Etapa(int lineas, String descripcion, String fase) {
+    public Etapa(int lineas, String descripcion) {
         this.lineas = lineas;
         this.descripcion = descripcion;
-        this.fase = fase;
+        setFase();
     }
 
     public int getLineas() {
@@ -37,14 +37,13 @@ public class Etapa {
         return fase;
     }
 
-    public void setFase(String fase) {
+    public void setFase() {
         if (descripcion.equals("Análisis Léxico") || descripcion.equals("Análisis Sintáctico") || descripcion.equals("Análisis Semántico")){
-            fase = "Fase de Análisis";
+            this.fase = "Fase de Análisis";
         }
         if (descripcion.equals("Generación de código intermedio") || descripcion.equals("optimizador de código")|| descripcion.equals("generador de código")) {
-            fase = "Fase de Síntesis";
+            this.fase = "Fase de Síntesis";
         }
-        this.fase = fase;
     }
 
     @Override

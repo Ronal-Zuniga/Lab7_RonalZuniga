@@ -1,10 +1,14 @@
 
-public class Super_Usuario {
+import java.io.Serializable;
+
+
+public class Super_Usuario implements Serializable{
 
     private String nombre;
     private String apellido;
     private String usuario;
     private String contra;
+    private static final long SerialVersionUID = 777L;
 
     public Super_Usuario() {
     }

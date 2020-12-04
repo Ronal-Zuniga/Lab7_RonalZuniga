@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 public class Usuarios extends Super_Usuario{
     
     private double nota;
