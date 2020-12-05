@@ -123,6 +123,9 @@ public class hiloAnalisis extends Thread{
                     }
                 }
             }
+            if (e1 == false && e2 == false && e3 == false) {
+                vive = false;
+            }
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ex) {
