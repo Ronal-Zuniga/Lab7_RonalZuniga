@@ -80,7 +80,7 @@ public class Compilador implements Serializable {
 
     @Override
     public String toString() {
-        return "Compilador{" + "nombre=" + nombre + ", creador=" + creador + ", codigo=" + codigo + ", etapas=" + etapas + ", simbolos=" + simbolos + ", errores=" + errores + '}';
+        return "nombre=" + nombre + ", creador=" + creador;
     }
 
 }
